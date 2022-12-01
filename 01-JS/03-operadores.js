@@ -66,7 +66,7 @@ console.log('respuestaFind', respuestaFind)
 // la expresión trae undefined si es que no encuentra nada
 
 
-//para los operadores es importante entender el nombre, entradam y salida
+//para los operadores es importante entender el nombre, entrada y salida
 
 const respuestaFindIndex= arreglo.findIndex(function (valorActual,indiceActual,arregloCompleto)
 {
@@ -142,7 +142,7 @@ console.log('respuesta', respuestaEvery)
 
 
 //REDUCE  metodo empieza de izq -> der
-//REDUCE RUGHT der --> izq
+//REDUCE RIGHT der --> izq
 //cualquier tipo de operacion y esa acumularle en una variable
 // necesitamos una variable inicial
 
