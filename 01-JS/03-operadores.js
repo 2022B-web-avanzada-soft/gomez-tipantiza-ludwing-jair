@@ -109,7 +109,7 @@ console.log('arrreglo', arreglo)
 
 const respuestaFilter= arreglo.filter(function (valorActual,indiceActual,arregloCompleto)
 {
-
+    console.log('valorActualFilter',valorActual)
     return valorActual.nota>=14;
 })
 
