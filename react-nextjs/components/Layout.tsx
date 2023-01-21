@@ -19,19 +19,21 @@ const Layout = ({children, title = 'This is the default title'}: Props) => (
         </Head>
         <header>
             <nav>
-                <Link href="/">HOME / CASA</Link> |
-                <Link href="/about">About</Link> |{' '}
-                <Link href="/users">Users List</Link> |{' '}
-                <a href="/a_hola_mundo">Hola mundo</a> |{' '}
-                <a href="/c_use_state">Use state</a> |{' '}
-                <a href="/d_hook_custom">HOOK CUSTOM</a> |{' '}
-                <a href="/e_use_context">USE CONTEXT</a> |{' '}
-                <a href="/f_ejemplo_criptomonedas">Criptomonedas</a> |{' '}
-                <a href="/api/users">Users API</a> |{' '}
-
+                <Link href="/">HOME / CASA</Link>                               |
+                <Link href="/about">About</Link>                                |{' '}
+                <Link href="/users">Users List</Link>                           |{' '}
+                <Link href="/a_hola_mundo">Hola mundo</Link>                    |{' '}
+                <Link href="/c_use_state">Use State</Link>                      |{' '}
+                <Link href="/d_hook_custom">Hook Custom</Link>                  |{' '}
+                <Link href="/e_use_context">Use Context</Link>                  |{' '}
+                <Link href="/f_ejemplo_criptomonedas">Criptomonedas</Link>      |{' '}
+                <a href="/api/users">Users API</a>                              |{' '}
             </nav>
         </header>
+        //Es una de las propiedades que pueden estar llegando a un componente. Son todas las etiquetas.
+        <div className={'container'}>
         {children}
+        </div>
         <footer>
             <hr/>
             <span>I'm here to stay (Footer)</span>
