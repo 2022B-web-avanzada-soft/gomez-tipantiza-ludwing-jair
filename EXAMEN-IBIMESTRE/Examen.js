@@ -51,7 +51,7 @@ async function createWatchBrand(watchBrand) {
             if (err) {
                 throw err;
             }
-            console.log('La marca de relojes ha sido creada exitosamente.');
+            //console.log('La marca de relojes ha sido creada exitosamente.');
         });
     });
 }
@@ -66,6 +66,7 @@ async function readWatchBrand(id) {
         let watchBrand = watchBrands.find(wb => wb.id === id);
         if (watchBrand) {
             console.log(watchBrand);
+            return watchBrand;
         } else {
             console.log('La marca de relojes no existe.');
         }
@@ -74,7 +75,7 @@ async function readWatchBrand(id) {
 
 // Función para actualizar una marca de relojes
 async function updateWatchBrand(id, updates) {
-    fs.readFile('brands.txt', (err, data) => {
+    await fs.readFile('brands.txt', (err, data) => {
         if (err) {
             throw err;
         }
@@ -90,17 +91,18 @@ async function updateWatchBrand(id, updates) {
                 if (err) {
                     throw err;
                 }
-                console.log('La marca de relojes ha sido actualizada exitosamente.');
+                //console.log('La marca de relojes ha sido actualizada exitosamente.');
             });
         } else {
-            console.log('La marca de relojes no existe.');
+            console.log('')
+            //console.log('La marca de relojes no existe.');
         }
     });
 }
 
 // Función para eliminar una marca de relojes
 async function deleteWatchBrand(id) {
-    fs.readFile('brands.txt', (err, data) => {
+    await fs.readFile('brands.txt', (err, data) => {
         if (err) {
             throw err;
         }
@@ -112,10 +114,12 @@ async function deleteWatchBrand(id) {
                 if (err) {
                     throw err;
                 }
-                console.log('La marca de relojes ha sido eliminada exitosamente.');
+                console.log('')
+                //console.log('La marca de relojes ha sido eliminada exitosamente.');
             });
         } else {
-            console.log('La marca de relojes no existe.');
+            console.log('')
+            //console.log('La marca de relojes no existe.');
         }
     });
 }
@@ -134,7 +138,8 @@ async function createWatch(watch) {
             if (err) {
                 throw err;
             }
-            console.log('El reloj ha sido creado exitosamente.');
+            console.log('')
+            //console.log('El reloj ha sido creado exitosamente.');
         });
     });
 }
@@ -148,7 +153,8 @@ async function readWatch(id) {
         let watches = JSON.parse(data);
         let watch = watches.find(w => w.id === id);
         if (watch) {
-            console.log(watch);
+            //console.log(watch);
+            //console.log(typeof (watch));
             return watch;
         } else {
             console.log('El reloj no existe.');
@@ -172,9 +178,11 @@ async function updateWatch(id, updates) {
                 if (err) {
                     throw err;
                 }
-                console.log('El reloj ha sido actualizado exitosamente.');
+                console.log('')
+                //console.log('El reloj ha sido actualizado exitosamente.');
             });
         } else {
+            console.log('')
             console.log('El reloj no existe.');
         }
     });
@@ -226,13 +234,13 @@ async function mainRelojes() {
             case 1 :
 
                 watches = JSON.parse(await leer('watches.txt'));
-                watches.forEach(watch => {
-                    console.log('Codigo del reloj en el mercado:', watch['code']);
+                for (const watch of watches) {
+                    console.log('Código del reloj en el mercado:', watch['code']);
                     console.log('Modelo al que pertenece:', watch['model']);
                     console.log('Precio en el mercado:', watch['price']);
                     console.log('Fecha de lanzamiento al mercado:', watch['releaseDate'], '\n');
-                    readWatchBrand(watch['brandId']);
-                });
+                    //let marca=  await readWatchBrand(Number(watch['brandId']));
+                }
 
                 break;
             case 2 :
@@ -271,24 +279,28 @@ async function mainRelojes() {
                     let reloj = new Watch(id, respuesta['brandId'], respuesta["model"], respuesta['releaseDate'], respuesta['price'], respuesta['code']);
 
                     await createWatch(reloj);
+                    console.log('reloj creado');
 
 
                 } catch (e) {
                     console.log(e);
                 }
+                break;
 
             case 3 :
                 console.log('Ingrese el id del reloj a modificar')
                 let modificar = Number(await leerOpcion());
-                let reloj = await readWatch(modificar);
+
                 try {
                     const respuesta = await inquirer
                         .prompt([{
-                            type: 'input', name: 'model', message: 'Ingresa el nuevo nombre de la marca'
-                        },{
-                            type: 'number', name: 'price', message: 'Ingresa el nuevo precio de la marca'
-                        },{
-                            type: 'number', name: 'code', message: 'Ingresa el nuevo código de la marca'
+                            type: 'input', name: 'model', message: 'Ingresa el nuevo modelo'
+                        }, {
+                            type: 'number', name: 'brandId', message: 'Ingresa el id de la marca a la que pertenece'
+                        }, {
+                            type: 'number', name: 'price', message: 'Ingresa el nuevo precio del reloj'
+                        }, {
+                            type: 'number', name: 'code', message: 'Ingresa el nuevo código'
                         }, {
                             type: 'input',
                             name: 'release',
@@ -302,8 +314,9 @@ async function mainRelojes() {
                                 }
                             }
                         }]);
-                    let relojNuevo = new WatchBrand(modificar,reloj['brandId'], respuesta['model'], respuesta['release'], respuesta['price'], respuesta['code']);
+                    let relojNuevo = new Watch(modificar, respuesta['brandId'], respuesta['model'], respuesta['release'], respuesta['price'], respuesta['code']);
                     await updateWatch(modificar, relojNuevo)
+                    console.log("reloj actualizado"+relojNuevo)
 
                 } catch (e) {
                     console && console.log(e)
@@ -375,13 +388,13 @@ async function main() {
                     id++;
                     let brand = new WatchBrand(id, respuesta['nombre'], respuesta['fundacion'], respuesta['esLujosa'], respuesta['sede']);
                     await createWatchBrand(brand);
-                    console.log("\n")
+                    console.log('marca creada')
 
 
                 } catch (e) {
                     console.log(e);
                 }
-
+                break;
             case 3 :
                 console.log('Ingrese el id de la marca a modificar')
                 let modificar = Number(await leerOpcion());
@@ -410,6 +423,7 @@ async function main() {
                         }]);
                     let brand = new WatchBrand(modificar, respuesta['nombre'], respuesta['fundacion'], respuesta['esLujosa'], respuesta['sede']);
                     await updateWatchBrand(modificar, brand)
+                    console.log('Marca actualizada')
 
                 } catch (e) {
                     console && console.log(e)
@@ -421,7 +435,10 @@ async function main() {
                 await deleteWatchBrand(eliminar);
                 break;
             case 5 :
-                await menuRelojes();
+                console.log('\n')
+                console.log('\n')
+                await mainRelojes();
+                break;
             default :
                 break;
         }

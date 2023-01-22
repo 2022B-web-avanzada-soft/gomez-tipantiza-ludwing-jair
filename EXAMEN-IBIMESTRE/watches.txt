@@ -1,1 +1,1 @@
-[{"code":"CUERO","model":"CUERO","price":10,"releaseDate":"02-02-1999","id":0,"brandId":"2"}]
+[{"id":0,"brandId":"2","model":"CUERO","price":10,"code":"CUERO","releaseDate":"02-02-1999"},{"id":1,"brandId":1,"model":"reloj casio","price":12.66,"code":2,"releaseDate":"02-02-1998"},{"id":2,"brandId":1,"model":"reloj casual","price":12.2,"code":"2"}]
