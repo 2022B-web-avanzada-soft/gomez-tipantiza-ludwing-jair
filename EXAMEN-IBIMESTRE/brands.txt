@@ -1,1 +1,1 @@
-[{"id":2,"name":"ROLEX","isLuxury":true,"headquarters":"ESPAÑA","foundedDate":"02-02-1999"},{"id":3,"name":"CASIO","isLuxury":true,"headquarters":"ESPAÑA"}]
+[{"id":1,"name":"ROLEX","foundedDate":"02/02/1999","isLuxury":true,"headquarters":"ESPAÑA"},{"id":2,"name":"Omega","foundedDate":"02/02/1999","isLuxury":true,"headquarters":""}]

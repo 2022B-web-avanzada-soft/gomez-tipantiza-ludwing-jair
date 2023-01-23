@@ -19,7 +19,7 @@ class Watch {
         this.id = id;
         this.brandId = brandId;
         this.model = model;
-        this.releaseDate = releaseDate;
+        this.release = releaseDate;
         this.price = price;
         this.code = code;
     }
@@ -45,8 +45,12 @@ async function createWatchBrand(watchBrand) {
         if (err) {
             throw err;
         }
+        console.log(watchBrand+'Datos entrantes\n')
+        console.log(data+'datos leidos\n');
         let watchBrands = JSON.parse(data);
+        console.log(watchBrands+'objetos leidos de dara\n')
         watchBrands.push(watchBrand);
+        console.log(watchBrands+'objetos pero aumentado\n')
         fs.writeFile('brands.txt', JSON.stringify(watchBrands), (err) => {
             if (err) {
                 throw err;
@@ -133,6 +137,7 @@ async function createWatch(watch) {
             throw err;
         }
         let watches = JSON.parse(data);
+
         watches.push(watch);
         fs.writeFile('watches.txt', JSON.stringify(watches), (err) => {
             if (err) {
@@ -238,7 +243,7 @@ async function mainRelojes() {
                     console.log('Código del reloj en el mercado:', watch['code']);
                     console.log('Modelo al que pertenece:', watch['model']);
                     console.log('Precio en el mercado:', watch['price']);
-                    console.log('Fecha de lanzamiento al mercado:', watch['releaseDate'], '\n');
+                    console.log('Fecha de lanzamiento al mercado:', watch['release'], '\n');
                     //let marca=  await readWatchBrand(Number(watch['brandId']));
                 }
 
@@ -276,7 +281,7 @@ async function mainRelojes() {
                         }
                     });
                     id++;
-                    let reloj = new Watch(id, respuesta['brandId'], respuesta["model"], respuesta['releaseDate'], respuesta['price'], respuesta['code']);
+                    let reloj = new Watch(id, respuesta['brandId'], respuesta["model"], respuesta['release'], respuesta['price'], respuesta['code']);
 
                     await createWatch(reloj);
                     console.log('reloj creado');
@@ -367,7 +372,7 @@ async function main() {
                             message: '¿La marca es prestigiosa, reconocida por ser de alta clase?'
                         }, {
                             type: 'input',
-                            name: 'fundación',
+                            name: 'fundacion',
                             message: 'Ingresa la fecha de fundación',
                             validate: function (value) {
                                 const fecha = new Date(value);
