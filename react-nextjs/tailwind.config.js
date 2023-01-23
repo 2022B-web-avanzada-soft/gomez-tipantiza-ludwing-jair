@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const KonstaConfig= require('konsta/config');
+module.exports = KonstaConfig({
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
@@ -9,3 +10,4 @@ module.exports = {
   },
   plugins: [],
 }
+)
