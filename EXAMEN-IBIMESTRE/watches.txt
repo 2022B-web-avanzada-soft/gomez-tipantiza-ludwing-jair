@@ -1,1 +1,1 @@
-[{"id":1,"brandId":1,"model":"reloj casual","release":"02/02/1999","price":12.2,"code":"2"},{"id":2,"brandId":1,"model":"reloj casual x","release":"02/02/2000","price":50.35,"code":"3"},{"id":3,"brandId":1,"model":"Reloj semideportivo xAS","release":"02/02/2002","price":10.23,"code":"4"}]
+[{"id":1,"brandId":1,"model":"reloj casual","release":"02/02/1999","price":12.2,"code":"2"}]

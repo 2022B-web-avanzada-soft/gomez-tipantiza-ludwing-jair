@@ -41,21 +41,17 @@ function leer(path) {
 
 // Función para crear una nueva marca de relojes
 async function createWatchBrand(watchBrand) {
-    fs.readFile('brands.txt', (err, data) => {
+    await fs.readFile('brands.txt', (err, data) => {
         if (err) {
             throw err;
         }
-        console.log(watchBrand+'Datos entrantes\n')
-        console.log(data+'datos leidos\n');
         let watchBrands = JSON.parse(data);
-        console.log(watchBrands+'objetos leidos de dara\n')
         watchBrands.push(watchBrand);
-        console.log(watchBrands+'objetos pero aumentado\n')
         fs.writeFile('brands.txt', JSON.stringify(watchBrands), (err) => {
             if (err) {
                 throw err;
             }
-            //console.log('La marca de relojes ha sido creada exitosamente.');
+           // console.log('La marca de relojes ha sido creada exitosamente.');
         });
     });
 }
@@ -119,11 +115,11 @@ async function deleteWatchBrand(id) {
                     throw err;
                 }
                 console.log('')
-                //console.log('La marca de relojes ha sido eliminada exitosamente.');
+                console.log('La marca de relojes ha sido eliminada exitosamente.');
             });
         } else {
             console.log('')
-            //console.log('La marca de relojes no existe.');
+            console.log('La marca de relojes no existe.');
         }
     });
 }
@@ -159,6 +155,23 @@ async function readWatch(id) {
         let watch = watches.find(w => w.id === id);
         if (watch) {
             //console.log(watch);
+            //console.log(typeof (watch));
+            return watch;
+        } else {
+            console.log('El reloj no existe.');
+        }
+    });
+}
+
+async function readWatchesFromBrand(id) {
+    fs.readFile('watches.txt', (err, data) => {
+        if (err) {
+            throw err;
+        }
+        let watches = JSON.parse(data);
+        let watch = watches.find(w => w.brandId === id);
+        if (watch) {
+            console.log(watch);
             //console.log(typeof (watch));
             return watch;
         } else {
@@ -232,8 +245,8 @@ async function mainRelojes() {
     while (opcion != 5) {
         console.log('\t RELOJ');
         console.log('1.- Leer\n2.- Crear\n3.- Modificar\n4.- Eliminar\n5.- Salir');
-        console.log('Ingresa la opción...')
-        opcion = Number(await leerOpcion());
+        await console.log('Ingresa la opción...')
+        opcion =  Number(await leerOpcion());
         let watches = null;
         switch (opcion) {
             case 1 :
@@ -342,7 +355,7 @@ async function main() {
     let opcion;
     while (opcion != 6) {
         console.log('\t MARCAS DE RELOJES');
-        console.log('1.- Leer\n2.- Crear\n3.- Modificar\n4.- Eliminar\n5.- RELOJ\n6.- Salir');
+        console.log('1.- Leer\n2.- Crear\n3.- Modificar\n4.- Eliminar\n5.- Gestionar Relojes\n6.- Salir');
         console.log('Ingresa la opción')
         opcion = Number(await leerOpcion());
         let brands = null;
@@ -393,7 +406,6 @@ async function main() {
                     id++;
                     let brand = new WatchBrand(id, respuesta['nombre'], respuesta['fundacion'], respuesta['esLujosa'], respuesta['sede']);
                     await createWatchBrand(brand);
-                    console.log('marca creada')
 
 
                 } catch (e) {
@@ -415,7 +427,7 @@ async function main() {
                             message: 'Ingrese de nuevo si considera que la marca es lujosa'
                         }, {
                             type: 'input',
-                            name: 'fundación',
+                            name: 'fundacion',
                             message: 'Ingresa de nuevo la fecha de fundación',
                             validate: function (value) {
                                 const fecha = new Date(value);

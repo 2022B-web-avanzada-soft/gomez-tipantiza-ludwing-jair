@@ -1,1 +1,1 @@
-[{"id":1,"name":"ROLEX","foundedDate":"02/02/1999","isLuxury":true,"headquarters":"ESPAÑA"},{"id":2,"name":"Omega","foundedDate":"02/02/1999","isLuxury":true,"headquarters":""}]
+[{"id":1,"name":"ROLEX","foundedDate":"02/02/1999","isLuxury":true,"headquarters":"ESPAÑA"},{"id":2,"name":"APPLE","isLuxury":true,"headquarters":"EEUU","foundedDate":"12/12/2000"}]
