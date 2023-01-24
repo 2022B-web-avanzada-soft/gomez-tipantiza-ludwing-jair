@@ -28,6 +28,7 @@ export default function () {
         },
         [monedas]
     )
+    // aquí esta el html que devuelve
     return (
         <>
             <Layout title="Ejemplo Criptomonedas | EPN">

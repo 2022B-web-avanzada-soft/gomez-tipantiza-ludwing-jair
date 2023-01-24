@@ -8,12 +8,13 @@ import {ConsultaMoneda} from "../../pages/f_ejemplo_criptomonedas";
 //export default function ({setMonedas})
 // pero después salió error
 
+//params son los parámetros que recibe del componente papa
 export default function (params) {
     const {setMonedas} =params;
     const [monedasArreglo, setMonedasArreglo] = useState(MONEDAS);
     const [criptoMonedasArreglo, setCriptoMonedasArreglo] = useState([] as MonedasInterface[]);
     const [valorMoneda, SelectMonedaComponente] = useSelectMoneda(
-        'Seleccionar Moneda',
+        'Label Seleccionar Moneda',
         monedasArreglo
     );
     const [valorCriptoMoneda, SelectCriptoMonedaComponente] = useSelectMoneda(

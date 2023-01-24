@@ -6,7 +6,7 @@ export default function (label: string, opciones: MonedasInterface[]) {
     // DEVOLVER select del arreglo de monedas (html - jsx element en react)
     // valor de esa moneda
     const [moneda, setMoneda] = useState('');
-    // ducnion que no recibe nada pero que resibe un jsx element
+    // funcion que no recibe nada pero que recibe un jsx element
     const generarJSXElementMonedas: () => JSX.Element[] = () => {
         //En react usualmente se itera con el map, no con el for
         return opciones.map(
