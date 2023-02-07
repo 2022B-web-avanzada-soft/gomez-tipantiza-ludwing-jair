@@ -5,23 +5,23 @@ import {Button} from "@mui/material";
 export default function (){
     return (<>
         <App theme="material">
-            <Page>
-                <Navbar
-                    title="List"
+        <Page>
+            <Navbar
+                title="List"
+            />
+            <BlockTitle>Links, Header, Footer</BlockTitle>
+            <List strongIos outlineIos>
+                <ListItem
+                    link
+                    header={
+                        <Button variant='outlined'>HOLA MUI</Button>
+                    }
+                    title="John Doe"
+                    after="Edit"
                 />
-                <BlockTitle>Links, Header, Footer</BlockTitle>
-                <List strongIos outlineIos>
-                    <ListItem
-                        link
-                        header={
-                            <Button variant='outlined'>HOLA MUI</Button>
-                        }
-                        title="John Doe"
-                        after="Edit"
-                    />
-                </List>
-            </Page>
+            </List>
+        </Page>
         </App>
-    </>)
+        </>)
 
 }

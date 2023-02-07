@@ -1,14 +1,13 @@
 // hooks/useSelectMoneda.tsx
 import {MonedasInterface} from "../../interfaces/moneda";
 import {useState} from "react";
+import {JSXElement} from "@babel/types";
 
 export default function (label: string, opciones: MonedasInterface[]) {
-    // DEVOLVER select del arreglo de monedas (html - jsx element en react)
+    // select del arreglo de monedas (html - jsx element)
     // valor de esa moneda
     const [moneda, setMoneda] = useState('');
-    // funcion que no recibe nada pero que recibe un jsx element
     const generarJSXElementMonedas: () => JSX.Element[] = () => {
-        //En react usualmente se itera con el map, no con el for
         return opciones.map(
             (moneda) =>
                 ( // Iteracion (KEY ES REQUERIDO)

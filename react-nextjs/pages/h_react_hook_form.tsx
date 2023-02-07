@@ -1,6 +1,6 @@
 // h_react_hook_form
 import {useState} from "react";
-import {useForm, Controller} from "react-hook-form";
+import {Controller, useForm} from "react-hook-form";
 import Layout from "../components/Layout";
 import {Button, FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 
@@ -9,12 +9,14 @@ type FormularioEjemplo = {
     estadoCivil: string;
 }
 export default function () {
-    const [nombre, setNombre] = useState('Jair');
+    const [nombre, setNombre] = useState('Adrian');
 
-    const {handleSubmit, register, formState: {errors, isValid}, control} = useForm<FormularioEjemplo>(
+    const {handleSubmit, register, formState: {errors, isValid},
+        control
+    } = useForm<FormularioEjemplo>(
         {
             defaultValues: {
-                nombre: 'Jair',
+                nombre: 'Vicente',
                 estadoCivil: ''
             },
             mode: 'all'
@@ -31,66 +33,76 @@ export default function () {
                     <label htmlFor="nombre" className="form-label">Nombre</label>
                     <input type="text"
                            className="form-control"
-                           placeholder="EJ: Jairsin"
+                           placeholder="EJ: Adrian"
                            id="nombre"
                            {...register('nombre', {
                                required: {
                                    value: true,
-                                   message: 'Este campo es obligatorio'
+                                   message: 'nombre requerido'
                                },
-                               maxLength: {
-                                   value: 20, message: 'Longitud maxima de 20'
-                               },
-                               minLength: {value: 5, message: 'Longitud mínima de 20'},
+                               maxLength: {value: 20, message: 'Longitud maxima 20'},
+                               minLength: {value: 5, message: 'Longitud minima 5'},
                                validate: {
-                                   soloNumeros: (valorActual) => {
+                                   soloNumeros:(valorActual) => {
+                                       // Transformar a numero un string:
+                                       // Number("1")
+                                       // +"1"
                                        if (Number.isNaN(+valorActual)) {
-                                           return 'ingrese solo números';
+                                           // Se puede devolver un false o un mensaje de error
+                                           // return false; // Error
+                                           return 'Ingrese solo numeros'; // Error
                                        } else {
-                                           return true;
+                                           // Se devuelve un true
+                                           return true; // Esta correcto
                                        }
                                    }
-
                                }
                            })}
                            aria-describedby="nombreHelp"/>
                     <div id="nombreHelp" className="form-text">
                         Ingresa tu nombre.
                     </div>
+                    {errors.nombre &&
+                        <div className="alert alert-warning"
+                             role="alert">
+                            Tiene errores {errors.nombre.message}
+                        </div>
+                    }
                 </div>
                 <div className="mb-3">
                     <FormControl fullWidth>
-                        <InputLabel id="estadoCivilId">Estado Civil</InputLabel>
+                        <InputLabel id="estadoCivilLabelId">Estado civil</InputLabel>
                         <Controller
                             control={control}
-                            rules={{required: {value: true, message: 'EstadoCivil requerido'}}}
-
+                            rules={{ required: {value: true, message: 'Estado C. requerido'}}}
                             name="estadoCivil"
                             render={
-
-                                ({field: {onChange, value, onBlur,}}) => {
-                                    return <Select
-                                        labelId="estadoCivilId"
-                                        id="estadoCivilId"
-                                        value={value}
-                                        label="Estado Civil"
-                                        onBlur={onBlur}
-                                        onChange={onChange}
-                                    >
-                                        <MenuItem value="Soltero">Soltero</MenuItem>
-                                        <MenuItem value="Casado">Casado</MenuItem>
-                                    </Select>
-                                }
+                            ({field: {onChange, value, onBlur,}}) => {
+                                return <Select
+                                    labelId="estadoCivilLabelId"
+                                    id="estadoCivilId"
+                                    label="Estado Civil"
+                                    onBlur={onBlur}
+                                    value={value}
+                                    onChange={onChange}
+                                >
+                                    <MenuItem value={'casado'}>Casado</MenuItem>
+                                    <MenuItem value={'soltero'}>Soltero</MenuItem>
+                                </Select>
                             }
+                        }
                         />
-                        {}
-                        {errors.estadoCivil && <div className="alert alert-warning" role="alert">
-                            Tiene errores {errors.estadoCivil.message}
-                        </div>
+                        {/*Termina controller*/}
+                        {errors.estadoCivil &&
+                            <div className="alert alert-warning" role="alert">
+                                Tiene errores {errors.estadoCivil.message}
+                            </div>
                         }
                     </FormControl>
                 </div>
-                <Button type="submit" disabled={!isValid} variant='outlined'>Submit</Button>
+                <Button type="submit"
+                        disabled={!isValid}
+                        variant='outlined'>Submit</Button>
             </form>
         </Layout>
 

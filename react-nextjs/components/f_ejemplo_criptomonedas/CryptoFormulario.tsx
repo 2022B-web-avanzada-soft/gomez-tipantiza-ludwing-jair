@@ -4,23 +4,19 @@ import {MonedasInterface} from "../../interfaces/moneda";
 import useSelectMoneda from "../hooks/useSelectMoneda";
 import {ConsultaMoneda} from "../../pages/f_ejemplo_criptomonedas";
 
-/// se puede hacer la destructuración desde aquí
-//export default function ({setMonedas})
-// pero después salió error
-
-//params son los parámetros que recibe del componente papa
 export default function (params) {
-    const {setMonedas} =params;
+    const {setMonedas} = params;
     const [monedasArreglo, setMonedasArreglo] = useState(MONEDAS);
     const [criptoMonedasArreglo, setCriptoMonedasArreglo] = useState([] as MonedasInterface[]);
     const [valorMoneda, SelectMonedaComponente] = useSelectMoneda(
-        'Label Seleccionar Moneda',
+        'Seleccionar Moneda',
         monedasArreglo
     );
     const [valorCriptoMoneda, SelectCriptoMonedaComponente] = useSelectMoneda(
         'Seleccionar Criptomoneda',
         criptoMonedasArreglo
     );
+
     useEffect(
         () => {
             const consultarAPICripto = async () => {
@@ -48,7 +44,7 @@ export default function (params) {
         e.preventDefault();
         const monedasConsulta: ConsultaMoneda = {
             valorCriptoMoneda: valorCriptoMoneda as string,
-            valorMoneda:    valorMoneda as string
+            valorMoneda: valorMoneda as string
         }
         setMonedas(monedasConsulta);
     }

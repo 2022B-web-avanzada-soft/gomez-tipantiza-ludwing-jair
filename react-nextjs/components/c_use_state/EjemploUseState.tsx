@@ -24,7 +24,7 @@ export default function () {
             console.log('INICIO EL COMPONENTE', numero, usuario);
         },
         []  // arregloVariables
-        // Si esta vacio se ejecuta al principio una vez
+            // Si esta vacio se ejecuta al principio una vez
     );
     useEffect(
         ()=>{

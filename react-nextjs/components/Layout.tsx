@@ -30,9 +30,8 @@ const Layout = ({children, title = 'This is the default title'}: Props) => (
                 <a href="/api/users">Users API</a>                              |{' '}
             </nav>
         </header>
-        //Es una de las propiedades que pueden estar llegando a un componente. Son todas las etiquetas.
         <div className={'container'}>
-        {children}
+            {children}
         </div>
         <footer>
             <hr/>

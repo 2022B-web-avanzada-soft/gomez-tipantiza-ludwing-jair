@@ -1,7 +1,7 @@
 // components/HookCustom.ts
 import useSelectMoneda from "../hooks/useSelectMoneda";
 import {useEffect, useState} from "react";
-import{MONEDAS} from "./monedas"
+import {MONEDAS} from "./monedas";
 
 export default function () {
     const [moneda, UseSelectMonedas] = useSelectMoneda(

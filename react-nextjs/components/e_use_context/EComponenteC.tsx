@@ -1,17 +1,16 @@
-
 import {useContext} from "react";
 import {ContenedorContext} from "./ContenedorContext";
 
 export default function (){
-    const contenedorContexto = useContext(ContenedorContext)
-    return(
+
+    const contenedorContexto = useContext(ContenedorContext);
+    return (
         <>
             Componente C
             <p>{contenedorContexto.nombreUsuario}</p>
-            <button onClick={event => {
-                event.preventDefault();
-                contenedorContexto.setNombreUsuario("CompC");
-
+            <button onClick={ e => {
+                e.preventDefault();
+                contenedorContexto.setNombreUsuario('CompC')
             }}>
                 Actualizar
             </button>
