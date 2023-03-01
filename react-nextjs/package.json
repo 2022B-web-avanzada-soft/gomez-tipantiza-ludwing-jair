@@ -16,6 +16,7 @@
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.6",
     "konsta": "^1.0.2",
+    "mysportsfeeds-node": "^2.1.2",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
