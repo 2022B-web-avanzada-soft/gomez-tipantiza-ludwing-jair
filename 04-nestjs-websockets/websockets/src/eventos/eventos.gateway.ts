@@ -8,14 +8,14 @@ import {Server, Socket} from 'socket.io';
         }
     })
 export class EventosGateway{
-    @SubscribeMessage('hola') // Nombre del método para recibir/escuchar eventos de los clientes
+    @SubscribeMessage('hola') // Nombre del metodo para recibir eventos
     devolverHola(
         @MessageBody()
             message: { mensaje: string },
         @ConnectedSocket()
             socket: Socket // import {Server, Socket} from 'socket.io';
     ) {
-        console.log('mensaje recibido servidor', message);
+        console.log('message', message);
         socket.broadcast // broadcast = > TODOS LOS CLIENTES CONECTADOS Y que esten escuchando el evento "escucharEventoHola" les llegue el mensaje
             .emit(
                 'escucharEventoHola', //  Nombre evento que vamos a enviar a los clientes conectados
