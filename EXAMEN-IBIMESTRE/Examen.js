@@ -41,13 +41,13 @@ function leer(path) {
 
 // Función para crear una nueva marca de relojes
 async function createWatchBrand(watchBrand) {
-    await fs.readFile('brands.txt', (err, data) => {
+    await fs.readFile('brand.txt', (err, data) => {
         if (err) {
             throw err;
         }
         let watchBrands = JSON.parse(data);
         watchBrands.push(watchBrand);
-        fs.writeFile('brands.txt', JSON.stringify(watchBrands), (err) => {
+        fs.writeFile('brand.txt', JSON.stringify(watchBrands), (err) => {
             if (err) {
                 throw err;
             }
@@ -58,7 +58,7 @@ async function createWatchBrand(watchBrand) {
 
 // Función para leer una marca de relojes
 async function readWatchBrand(id) {
-    fs.readFile('brands.txt', (err, data) => {
+    fs.readFile('brand.txt', (err, data) => {
         if (err) {
             throw err;
         }
@@ -75,7 +75,7 @@ async function readWatchBrand(id) {
 
 // Función para actualizar una marca de relojes
 async function updateWatchBrand(id, updates) {
-    await fs.readFile('brands.txt', (err, data) => {
+    await fs.readFile('brand.txt', (err, data) => {
         if (err) {
             throw err;
         }
@@ -87,7 +87,7 @@ async function updateWatchBrand(id, updates) {
             for (let key in updates) {
                 watchBrands[watchBrandIndex][key] = updates[key];
             }
-            fs.writeFile('brands.txt', JSON.stringify(watchBrands), (err) => {
+            fs.writeFile('brand.txt', JSON.stringify(watchBrands), (err) => {
                 if (err) {
                     throw err;
                 }
@@ -102,7 +102,7 @@ async function updateWatchBrand(id, updates) {
 
 // Función para eliminar una marca de relojes
 async function deleteWatchBrand(id) {
-    await fs.readFile('brands.txt', (err, data) => {
+    await fs.readFile('brand.txt', (err, data) => {
         if (err) {
             throw err;
         }
@@ -110,7 +110,7 @@ async function deleteWatchBrand(id) {
         let watchBrandIndex = watchBrands.findIndex(wb => wb.id === id);
         if (watchBrandIndex !== -1) {
             watchBrands.splice(watchBrandIndex, 1);
-            fs.writeFile('brands.txt', JSON.stringify(watchBrands), (err) => {
+            fs.writeFile('brand.txt', JSON.stringify(watchBrands), (err) => {
                 if (err) {
                     throw err;
                 }
@@ -128,14 +128,14 @@ async function deleteWatchBrand(id) {
 
 // Función para crear un nuevo reloj
 async function createWatch(watch) {
-    fs.readFile('watches.txt', (err, data) => {
+    fs.readFile('watch.txt', (err, data) => {
         if (err) {
             throw err;
         }
         let watches = JSON.parse(data);
 
         watches.push(watch);
-        fs.writeFile('watches.txt', JSON.stringify(watches), (err) => {
+        fs.writeFile('watch.txt', JSON.stringify(watches), (err) => {
             if (err) {
                 throw err;
             }
@@ -147,7 +147,7 @@ async function createWatch(watch) {
 
 // Función para leer un reloj
 async function readWatch(id) {
-    fs.readFile('watches.txt', (err, data) => {
+    fs.readFile('watch.txt', (err, data) => {
         if (err) {
             throw err;
         }
@@ -164,7 +164,7 @@ async function readWatch(id) {
 }
 
 async function readWatchesFromBrand(id) {
-    fs.readFile('watches.txt', (err, data) => {
+    fs.readFile('watch.txt', (err, data) => {
         if (err) {
             throw err;
         }
@@ -182,7 +182,7 @@ async function readWatchesFromBrand(id) {
 
 // Función para actualizar un reloj
 async function updateWatch(id, updates) {
-    fs.readFile('watches.txt', (err, data) => {
+    fs.readFile('watch.txt', (err, data) => {
         if (err) {
             throw err;
         }
@@ -192,7 +192,7 @@ async function updateWatch(id, updates) {
             for (let key in updates) {
                 watches[watchIndex][key] = updates[key];
             }
-            fs.writeFile('watches.txt', JSON.stringify(watches), (err) => {
+            fs.writeFile('watch.txt', JSON.stringify(watches), (err) => {
                 if (err) {
                     throw err;
                 }
@@ -208,7 +208,7 @@ async function updateWatch(id, updates) {
 
 // Función para eliminar un reloj
 async function deleteWatch(id) {
-    fs.readFile('watches.txt', (err, data) => {
+    fs.readFile('watch.txt', (err, data) => {
         if (err) {
             throw err;
         }
@@ -216,7 +216,7 @@ async function deleteWatch(id) {
         let watchIndex = watches.findIndex(w => w.id === id);
         if (watchIndex !== -1) {
             watches.splice(watchIndex, 1);
-            fs.writeFile('watches.txt', JSON.stringify(watches), (err) => {
+            fs.writeFile('watch.txt', JSON.stringify(watches), (err) => {
                 if (err) {
                     throw err;
                 }
@@ -251,7 +251,7 @@ async function mainRelojes() {
         switch (opcion) {
             case 1 :
 
-                watches = JSON.parse(await leer('watches.txt'));
+                watches = JSON.parse(await leer('watch.txt'));
                 for (const watch of watches) {
                     console.log('Código del reloj en el mercado:', watch['code']);
                     console.log('Modelo al que pertenece:', watch['model']);
@@ -287,7 +287,7 @@ async function mainRelojes() {
                             }
                         }]);
 
-                    const relojes = JSON.parse(await leer('watches.txt'));
+                    const relojes = JSON.parse(await leer('watch.txt'));
                     relojes.forEach(reloj => {
                         if (id < reloj["id"]) {
                             id = reloj["id"];
@@ -362,7 +362,7 @@ async function main() {
         switch (opcion) {
             case 1 :
 
-                brands = JSON.parse(await leer('brands.txt'));
+                brands = JSON.parse(await leer('brand.txt'));
                 brands.forEach(brands => {
                     console.log('Nombre de la empresa:', brands['name']);
                     console.log('Su sede es:', brands['headquarters']);
@@ -397,7 +397,7 @@ async function main() {
                             }
                         }]);
 
-                    const marcasReloj = JSON.parse(await leer('brands.txt'));
+                    const marcasReloj = JSON.parse(await leer('brand.txt'));
                     marcasReloj.forEach(marca => {
                         if (id < marca["id"]) {
                             id = marca["id"];

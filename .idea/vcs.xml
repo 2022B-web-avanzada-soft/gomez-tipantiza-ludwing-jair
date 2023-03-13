@@ -4,5 +4,6 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/04-NPSJS-WEBSCOKET/websockets" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/AplicativoWebSocket/project-name" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/EXAMEN-IIBIMESTRE/examen2" vcs="Git" />
   </component>
 </project>
