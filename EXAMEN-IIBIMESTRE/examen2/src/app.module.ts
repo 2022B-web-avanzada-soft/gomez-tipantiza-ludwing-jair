@@ -17,7 +17,7 @@ import {BrandModule} from "./brand/brand.module";
           WatchEntity
       ], // entidades de TOODOO el aplicativo
       synchronize: true, // true => edita las columnas y tablas // false => nada
-      dropSchema: true, // true => borra toda la base de datos! cuidado! // false => nada
+      dropSchema: false, // true => borra toda la base de datos! cuidado! // false => nada
     }),
       BrandModule,
       WatchModule
