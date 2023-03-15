@@ -14,11 +14,12 @@ import {UsuarioUpdateDto} from "./dto/usuario-update.dto";
 import {validate} from "class-validator";
 import {FindManyOptions, FindOptionsWhere, Like} from "typeorm";
 import {UsuarioEntity} from "./usuario.entity";
+
 @Controller('usuario')
 // http://localhost:3000/usuario/
 // @Controller('usuario/asd/qwe')
 // http://localhost:3000/usuario/asd/qwe
-export class UsuarioController{
+export class UsuarioController {
     constructor(
         private readonly usuarioService: UsuarioService
     ) {
@@ -68,15 +69,6 @@ export class UsuarioController{
     }
 
 
-
-
-
-
-
-
-
-
-
     @Post("/") // POST /usuario
     @HttpCode(201)
     async create(
@@ -109,37 +101,29 @@ export class UsuarioController{
             // relations: { //  Relaciones
             //     notas: true
             // },
-            skip: queryParams.skip ? +queryParams.skip : 0 , // 2 * 0 = 0 ; 2 * 1 = 2; 2 * 2 = 4;
+            skip: queryParams.skip ? +queryParams.skip : 0, // 2 * 0 = 0 ; 2 * 1 = 2; 2 * 2 = 4;
             take: queryParams.take ? +queryParams.take : 10
         };
+        // para utiliza un OR podemos utilizar con arreglos
         const consultaWhere = [] as FindOptionsWhere<UsuarioEntity>[]
-        if(queryParams.nombres){
+        if (queryParams.nombres) {
             consultaWhere.push({
                 nombres: Like('%' + queryParams.nombres + '%'), // dr
                 rol: queryParams.rol ? queryParams.rol : undefined // U
             })
         }
-        if(queryParams.apellidos){
+        if (queryParams.apellidos) {
             consultaWhere.push({
                 apellidos: Like('%' + queryParams.apellidos + '%'), // dr
                 rol: queryParams.rol ? queryParams.rol : undefined, // U
             })
         }
-        if(consultaWhere.length > 0){
+        if (consultaWhere.length > 0) {
             consulta.where = consultaWhere
         }
         return this.usuarioService.find(consulta);
 
     }
-
-
-
-
-
-
-
-
-
 
 
     // 1 Informativo

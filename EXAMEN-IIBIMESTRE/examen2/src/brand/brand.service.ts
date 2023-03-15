@@ -20,7 +20,8 @@ export class BrandService {
     findOneById(id: number) {
         return this.brandRepository.findOne({
             where: {
-                id: id
+                id: id,
+
             }
         })
     }

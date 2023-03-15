@@ -20,7 +20,7 @@ export class UsuarioService{
         return this.usuarioRepository.findOne({
             // select:{ },
             where: {
-                id: id
+                id: id,
             },
         })
     }

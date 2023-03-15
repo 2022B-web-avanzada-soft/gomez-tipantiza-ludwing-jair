@@ -1,10 +1,7 @@
 import {Injectable} from "@nestjs/common";
 import {InjectDataSource} from "@nestjs/typeorm";
 import {DataSource, FindManyOptions} from "typeorm";
-import {UsuarioEntity} from "../usuario/usuario.entity";
 import {NotaEntity} from "./nota.entity";
-import {UsuarioCreateDto} from "../usuario/dto/usuario-create.dto";
-import {UsuarioUpdateDto} from "../usuario/dto/usuario-update.dto";
 
 @Injectable()
 export class NotaService {

@@ -9,6 +9,7 @@ import {WatchController} from "./watch.controller";
     imports: [
         TypeOrmModule.forFeature(
             [WatchEntity],
+            'default'
         ),
     ],
     providers: [WatchService],

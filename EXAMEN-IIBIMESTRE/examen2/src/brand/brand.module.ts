@@ -8,6 +8,7 @@ import {BrandService} from "./brand.service";
     imports: [
         TypeOrmModule.forFeature(
             [BrandEntity],
+            'default'
         ),
         ],
     providers: [BrandService],
