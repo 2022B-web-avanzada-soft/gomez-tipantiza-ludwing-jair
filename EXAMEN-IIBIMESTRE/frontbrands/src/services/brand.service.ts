@@ -1,21 +1,15 @@
-import {Watch} from "@/services/watch.service";
+import {Brand} from "@/interfaces/Brand";
 
-export interface Brand{
-    id:number,
-    nameBrand: string;
-    foundedDate: string;
-    isLuxury: number;
-    headquarters: number;
-}
-const url = "http://localhost:3000/"
+
+const url = "http://localhost:11201/brand"
 export class BrandService {
     async getBrands(): Promise<Brand[]> {
-        const response = await fetch(url+"brand")
+        const response = await fetch(url)
         const brand = await response.json() as Brand[]
         return brand;
     }
     async getBrand(id:number): Promise<Brand> {
-        const response = await fetch(url+"brand/"+id.toString())
+        const response = await fetch(url+"/"+id.toString())
         const brand =  await  response.json()
         return brand;
     }
@@ -27,7 +21,7 @@ export class BrandService {
             }
         };
 
-        await fetch(url + "brand/" + id.toString()+"/", options)
+        await fetch(url + "/" + id.toString(), options)
             .then(response => {
                 // Manejar la respuesta
             })
@@ -44,7 +38,7 @@ export class BrandService {
             },
             body : JSON.stringify(brand),
         };
-        await fetch(url + "brand/" + id.toString()+"/", options)
+        await fetch(url + "/" + id.toString(), options)
             .then(response => {
                 // Manejar la respuesta
             })
@@ -60,7 +54,7 @@ export class BrandService {
             },
             body : JSON.stringify(brand),
         };
-        await fetch(url + "brand", options)
+        await fetch(url, options)
             .then(response => {
                 // Manejar la respuesta
             })

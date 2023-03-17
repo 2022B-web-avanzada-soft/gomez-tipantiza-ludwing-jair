@@ -1,24 +1,19 @@
-export interface Watch{
-    id: number;
-    model: string;
-    release: string;
-    price: number;
-    code: number;
-    brand:number;
-}
-const url = "http://localhost:3000/"
+import {Watch} from "@/interfaces/Watch";
+
+const url = "http://localhost:11201/watch"
 export class WatchService {
     async getWatches(): Promise<Watch[]> {
-        const response = await fetch(url+"watch")
+        const response = await fetch(url)
         const watch = await response.json() as Watch[]
         return watch;
     }
-    async getWatch(id:number): Promise<Watch> {
-        const response = await fetch(url+"watch/"+id.toString())
+
+    async getWatchByBrand(id:number): Promise<Watch[]> {
+        const response = await fetch(url+"/brand/"+id.toString())
         const watch =  await  response.json()
         return watch;
     }
-    static async   deleteComputador(id: number){
+    static async   deleteWatch(id: number){
         const options = {
             method: 'DELETE',
             headers: {
@@ -26,7 +21,7 @@ export class WatchService {
             }
         };
 
-        await fetch(url + "watch/" + id.toString()+"/", options)
+        await fetch(url + "/" + id.toString(), options)
             .then(response => {
                 // Manejar la respuesta
             })
@@ -35,7 +30,7 @@ export class WatchService {
             });
     }
 
-    static async   updateComputador(id: number, watch:Watch){
+    static async   updateWatch(id: number, watch:Watch){
         const options = {
             method: 'PUT',
             headers: {
@@ -43,7 +38,7 @@ export class WatchService {
             },
             body : JSON.stringify(watch),
         };
-        await fetch(url + "watch/" + id.toString()+"/", options)
+        await fetch(url + "/" + id.toString(), options)
             .then(response => {
                 // Manejar la respuesta
             })
@@ -51,7 +46,8 @@ export class WatchService {
                 console.log(error);
             });
     }
-    static async   createComputer(watch:Watch){
+
+    static async createWatch(watch: Watch){
         const options = {
             method: 'POST',
             headers: {
@@ -59,7 +55,7 @@ export class WatchService {
             },
             body : JSON.stringify(watch),
         };
-        await fetch(url + "watch", options)
+        await fetch(url, options)
             .then(response => {
                 // Manejar la respuesta
             })

@@ -39,7 +39,7 @@ export class BrandEntity {
         nullable: false, // Si es nullable
         // comentario en la base de datos
     })
-    headquarters: number;
+    headquarters: string;
 
 
     @OneToMany(
